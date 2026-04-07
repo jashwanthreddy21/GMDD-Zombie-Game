@@ -185,9 +185,11 @@ GameObject:
   - component: {fileID: 1869670054142922472}
   - component: {fileID: 6083546874002943102}
   - component: {fileID: 2896374041721253652}
+  - component: {fileID: 2896374041721253653}
+  - component: {fileID: 2896374041721253654}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -222,7 +224,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -280,7 +282,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 90
-        value: 0
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -301,10 +303,10 @@ MonoBehaviour:
     smoothTime: 18
     lockCursor: 1
   advancedSettings:
-    groundCheckDistance: 0.1
-    stickToGroundHelperDistance: 0.6
+    groundCheckDistance: 0.15
+    stickToGroundHelperDistance: 1.0
     slowDownRate: 20
-    airControl: 0
+    airControl: 1
     shellOffset: 0
 --- !u!114 &7289453752666412084
 MonoBehaviour:
@@ -365,6 +367,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactCanvas: {fileID: 0}
   impactTime: 0.3
+--- !u!114 &2896374041721253653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallThresholdY: -100
+  respawnOffsetY: 3
+--- !u!114 &2896374041721253654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4d32db282b7e0a4eb0f34cbfea89589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorOffset: 1.1
+  floorSize: 15
 --- !u!1 &4946653611849585096
 GameObject:
   m_ObjectHideFlags: 0

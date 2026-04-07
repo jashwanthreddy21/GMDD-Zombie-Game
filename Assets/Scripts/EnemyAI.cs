@@ -1,5 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,11 +12,27 @@ public class EnemyAI : MonoBehaviour
     EnemyHealth health;
     Transform target;
 
+    [Header("Audio")]
+    AudioClip zombieRoarSound;
+    AudioSource audioSource;
+
     void Start()
     {
+        zombieRoarSound = Resources.Load<AudioClip>("zombie_roar");
         navMeshAgent = GetComponent<NavMeshAgent>();
         health = GetComponent<EnemyHealth>();
-        target = FindObjectOfType<PlayerHealth>().transform;
+        PlayerHealth player = FindObjectOfType<PlayerHealth>();
+        if (player != null)
+        {
+            target = player.transform;
+        }
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = 1f; // Make it 3D sound
+        }
     }
 
     void Update()
@@ -27,7 +41,11 @@ public class EnemyAI : MonoBehaviour
         {
             enabled = false;
             navMeshAgent.enabled = false;
+            return;
         }
+
+        if (target == null) return;
+
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if (isProvoked)
         {
@@ -35,13 +53,29 @@ public class EnemyAI : MonoBehaviour
         }
         else if (distanceToTarget <= chaseRange)
         {
+            if (!isProvoked) 
+            {
+                PlayZombieRoar();
+            }
             isProvoked = true;
         }
     }
 
     public void OnDamageTaken()
     {
+        if (!isProvoked) 
+        {
+            PlayZombieRoar();
+        }
         isProvoked = true;
+    }
+
+    private void PlayZombieRoar()
+    {
+        if (zombieRoarSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(zombieRoarSound);
+        }
     }
 
     private void EngageTarget()

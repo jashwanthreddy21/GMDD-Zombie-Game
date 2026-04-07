@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BatteryPickup : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class BatteryPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             other.GetComponentInChildren<FlashLightSystem>().RestoreLightAngle(restoreAngle);
             other.GetComponentInChildren<FlashLightSystem>().AddLightIntensity(addIntensity);

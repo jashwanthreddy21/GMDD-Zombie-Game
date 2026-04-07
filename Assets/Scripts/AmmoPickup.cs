@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class AmmoPickup : MonoBehaviour
 {
@@ -9,7 +7,7 @@ public class AmmoPickup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag("Player"))
         {
             FindObjectOfType<Ammo>().IncreaseCurrentAmmo(ammoType, ammoAmount);
             Destroy(gameObject);
